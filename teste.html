@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento</title>
+</head>
+<body>
+    <h1>Teste de soma</h1>
+    <input id="num1" type="number" placeholder="Número A">
+    <input id="num2" type="number" placeholder="Número B">
+    <button onclick="calcularSoma()">Calcular Soma</button>
+    <p id="resultado"></p>
+
+<script>
+async function calcularSoma() {
+    const a = document.getElementById('num1').value;
+    const b = document.getElementById('num2').value;
+
+    const response = await fetch('http://localhost:3000/soma', {  // ← Adicione a URL completa
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ a: Number(a), b: Number(b) })
+    });
+
+    const data = await response.json();
+    document.getElementById('resultado').innerText = `Resultado: ${data.resultado}`;
+}
+</script>
+</body>
+</html>
