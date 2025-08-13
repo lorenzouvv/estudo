@@ -1,3 +1,3 @@
 export const mensagem = (nome: string): string => {
-  return `Hello! ${nome}`;
+  return `Olá, ${nome}! Seja bem-vindo(a)!`;
 };

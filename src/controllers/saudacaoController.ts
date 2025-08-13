@@ -1,11 +1,14 @@
-import { Request, Response } from 'express';
-import { mensagem } from '../services/saudacaoService';
+import { Request, Response } from "express";
+import { mensagem } from "../services/saudacaoService";
 
 export const saudar = (req: Request, res: Response) => {
-  if (!req.params.nome) {
-    return res.status(400).json({ error: 'Nome é obrigatório' });
+  const { nome } = req.params;
+
+  // Validação adicional recomendada
+  if (!nome || typeof nome !== "string") {
+    return res.status(400).send("Nome inválido");
   }
-  
-  const resultado = mensagem(req.params.nome);
-  res.send(resultado);
+
+  // Versão correta sem parêntese extra
+  res.send(mensagem(nome));
 };
